@@ -12,8 +12,6 @@ public class ProjectileController : MonoBehaviour
     private void ThrowProjectile()
     {
         //create the projectile and apply an impulse force to it in the direction of the player's mouse
-
-        
         GameObject projectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
         Vector2 forceDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         projectile.GetComponent<Rigidbody2D>()?.AddForce(forceDir.normalized * _throwPower, ForceMode2D.Impulse);

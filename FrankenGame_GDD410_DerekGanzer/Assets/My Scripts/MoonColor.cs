@@ -10,7 +10,7 @@ public class MoonColor : MonoBehaviour
     public float timeLeft = 3.0f;
     public Text startText; // used for showing countdown from 3, 2, 1 
     public GameObject Planet;
-
+    public AudioSource Cheer;
 
     void Update()
     {
@@ -26,7 +26,10 @@ public class MoonColor : MonoBehaviour
             if (timeLeft < 0)
             {
                 Moon.color = Color.green;
+                startText.text = "GO HOME";
+                Cheer.Play();
             }
+
         }
     }
 }

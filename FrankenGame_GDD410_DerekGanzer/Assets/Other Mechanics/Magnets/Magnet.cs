@@ -1,14 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Magnet : MonoBehaviour
 {
     [Header("Magnet Settings")]
     [SerializeField] private float _attractSpeed;
     [SerializeField] private float _collisionDelay;
-    public float curentClip, maxClipSize = 2, currentAmmo, maxAmmoSize = 4;
-    public Rigidbody2D _rb;
+
+    private Rigidbody2D _rb;
 
     private void Awake() => StartCoroutine(CollisionDelay());
 
@@ -31,9 +32,8 @@ public class Magnet : MonoBehaviour
     }
 
     //destroy magnet when it collides with the player
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))  Destroy(gameObject);
-        ++currentAmmo;
+        if (collision.gameObject.CompareTag("Player")) Destroy(gameObject);
     }
 }

@@ -6,18 +6,22 @@ using UnityEngine.SceneManagement;
 public class WinCondition : MonoBehaviour
 {
     public SpriteRenderer Moon;
-    public GameObject Earth;
+    public Transform Earth;
     private int nextSceneToLoad;
 
     void Start()
     {
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Moon.color == Color.green)
+        {
+            transform.RotateAround(transform.position, transform.up, Time.deltaTime * 90f);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
